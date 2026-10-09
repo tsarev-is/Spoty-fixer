@@ -1,0 +1,15 @@
+[Unit]
+Description=Restart Spotify when an ad starts
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+# Path to spoty_reloader.py in your copy of the repo (%h is the home directory).
+ExecStart=%h/Spoty-fixer/spoty_reloader.py
+Restart=on-failure
+RestartSec=5
+# Spotify started by the script must not die with the service.
+KillMode=process
+
+[Install]
+WantedBy=graphical-session.target
